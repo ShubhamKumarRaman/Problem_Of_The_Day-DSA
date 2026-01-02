@@ -1,0 +1,35 @@
+
+import java.util.Arrays;
+
+public class J02NRepeatedElement {
+
+    //Using Sorting
+    public static int usingSorting(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        int count = 1, digit = nums[0];
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == digit) {
+                count++;
+            } else {
+                digit = nums[i];
+                count = 1;
+            }
+            if (count == n / 2) {
+                return nums[i];
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String args[]) {
+        int[] nums = {5, 1, 5, 2, 5, 3, 5, 4};
+        System.out.println("Result: " + usingSorting(nums));
+
+        int[] nums2 = {1, 2, 3, 3};
+        System.out.println("Result: " + usingSorting(nums2));
+
+        int[] nums3 = {2, 1, 2, 5, 3, 2};
+        System.out.println("Result: " + usingSorting(nums3));
+    }
+}
