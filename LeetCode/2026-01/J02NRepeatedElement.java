@@ -1,5 +1,7 @@
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Hashtable;
 
 public class J02NRepeatedElement {
 
@@ -22,14 +24,36 @@ public class J02NRepeatedElement {
         return -1;
     }
 
+    //Using Hashtable
+    public static int usingHashTable(int[] nums) {
+        int length = nums.length / 2;
+        Hashtable<Integer, Integer> freq = new Hashtable<>();
+
+        //Count frequency of each element
+        for (int n : nums) {
+            freq.put(n, freq.getOrDefault(n, 0) + 1);
+        }
+
+        //Search for n frequency
+        for (Integer key : freq.keySet()) {
+            if (freq.get(key) == length) {
+                return key;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String args[]) {
         int[] nums = {5, 1, 5, 2, 5, 3, 5, 4};
         System.out.println("Result: " + usingSorting(nums));
-
+        System.out.println("Using Hashtable: " + usingHashTable(nums));
+        
         int[] nums2 = {1, 2, 3, 3};
         System.out.println("Result: " + usingSorting(nums2));
-
+        System.out.println("Using HashTable: " + usingHashTable(nums2));
+        
         int[] nums3 = {2, 1, 2, 5, 3, 2};
         System.out.println("Result: " + usingSorting(nums3));
+        System.out.println("Using HashTable: " + usingHashTable(nums3));
     }
 }
